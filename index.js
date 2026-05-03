@@ -6,6 +6,7 @@ import connectDB from "./config/db.js";
 // Routes import
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import serviceRoutes from "./routes/service.routes.js";
 
 dotenv.config();
 
@@ -35,8 +36,8 @@ app.get("/", (req, res) => {
 
 // ── API Routes ──
 app.use("/api/auth", authRoutes);
-
 app.use("/api/users", userRoutes);// User related routes (profile, admin user management)
+app.use("/api/services", serviceRoutes);// Service related routes (CRUD, approval, etc.)
 
 // 404 Handler
 app.use((req, res) => {
