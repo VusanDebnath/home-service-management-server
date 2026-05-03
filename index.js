@@ -3,27 +3,27 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 
-// .env load করো
+// Routes import
+import authRoutes from "./routes/auth.routes.js";
+
 dotenv.config();
 
-// Express app তৈরি
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ── Middlewares ──
+// Middlewares
 app.use(
   cors({
-    origin: "http://localhost:5173", // Frontend URL
+    origin: "http://localhost:5173",
     credentials: true,
   }),
 );
 app.use(express.json());
-// express.json() → request body থেকে JSON parse করে
 
-// ── Database Connect ──
+// Database
 connectDB();
 
-// ── Test Route ──
+// Test Route
 app.get("/", (req, res) => {
   res.json({
     success: true,
@@ -32,7 +32,10 @@ app.get("/", (req, res) => {
   });
 });
 
-// ── 404 Handler ──
+// ── API Routes ──
+app.use("/api/auth", authRoutes);
+
+// 404 Handler
 app.use((req, res) => {
   res.status(404).json({
     success: false,
@@ -40,7 +43,7 @@ app.use((req, res) => {
   });
 });
 
-// ── Error Handler ──
+// Error Handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
@@ -49,7 +52,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-// ── Server Start ──
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
