@@ -8,6 +8,7 @@ import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import serviceRoutes from "./routes/service.routes.js";
 import bookingRoutes from "./routes/booking.routes.js";
+import reviewRoutes from "./routes/review.routes.js";
 
 dotenv.config();
 
@@ -40,6 +41,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);// User related routes (profile, admin user management)
 app.use("/api/services", serviceRoutes);// Service related routes (CRUD, approval, etc.)
 app.use("/api/bookings", bookingRoutes);// Booking related routes (CRUD, status updates, etc.)
+app.use("/api/reviews", reviewRoutes);// Review related routes (CRUD, etc.)
 
 // 404 Handler
 app.use((req, res) => {
