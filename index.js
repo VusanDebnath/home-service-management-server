@@ -16,14 +16,25 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middlewares
+// app.use(
+//   cors({
+//     origin: ["http://localhost:5173",
+//       "https://home-service-management-client-site.vercel.app/"
+//     ],
+//     credentials: true,
+//   }),
+// );
 app.use(
   cors({
-    origin: ["http://localhost:5173",
-      "https://home-service-management-client-site.vercel.app/"
-    ],
+    origin: function (origin, callback) {
+      // সব origin allow করো
+      // Production এ specific URL দেবো
+      callback(null, true);
+    },
     credentials: true,
   }),
 );
+
 app.use(express.json());
 
 // Database
