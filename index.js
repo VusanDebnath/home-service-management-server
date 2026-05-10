@@ -18,7 +18,9 @@ const PORT = process.env.PORT || 5000;
 // Middlewares
 app.use(
   cors({
-    origin: "https://home-service-management-server.onrender.com",
+    origin: ["http://localhost:5173",
+      "https://home-service-management-client-site.vercel.app/"
+    ],
     credentials: true,
   }),
 );
